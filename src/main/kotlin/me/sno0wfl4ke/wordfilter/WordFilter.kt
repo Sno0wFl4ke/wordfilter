@@ -15,12 +15,11 @@ class WordFilter {
 
     private val hashSet: HashSet<String> = HashSet()
 
-    // Runtime complexity of this operation is O(1)
     private fun findWord(word: String): Boolean {
         return hashSet.contains(word)
     }
 
-    private fun loadWords(filePath: String) {
+    fun loadWords(filePath: String) {
         if (loaded) {
             throw IllegalArgumentException("[wordfilter] Already loaded all entries!")
         }
@@ -31,19 +30,14 @@ class WordFilter {
         val reader = CSVReader(InputStreamReader(inputStream))
         val lines = reader.readAll()
 
-        lines.forEach { line ->
-            //trie.insertNode(line[0])
-            hashSet.addAll(listOf(line[0]))
-        }
+        lines.forEach { line -> hashSet.addAll(listOf(line[0])) }
 
         loaded = true
     }
 
     fun searchWord(word: String): Boolean {
-        if (!loaded) {
+        if (!loaded)
             throw IllegalArgumentException("[wordfilter] No entries loaded!")
-        }
-
         return findWord(word)
     }
 
@@ -52,9 +46,6 @@ class WordFilter {
         val strArray = input.lowercase().split(" ").toTypedArray()
         var badWordCounter = 0
         var wordCount = 0
-
-        val runtime: HashMap<String, Long> = HashMap()
-        runtime["analyseString"] = System.currentTimeMillis()
 
         var wordFound = false
 
@@ -67,8 +58,6 @@ class WordFilter {
 
             wordCount += 1
         }
-        println("Runtime analysis & censoring: ${System.currentTimeMillis() - runtime["analyseString"]!!}ms")
-        println("Harmful words: $badWordCounter/$wordCount")
         return censoredString
     }
 
