@@ -53,7 +53,6 @@ class WordFilter {
         var badWordCounter = 0
         var wordCount = 0
 
-        removePunctuation(strArray.toString())
         val runtime: HashMap<String, Long> = HashMap()
         runtime["analyseString"] = System.currentTimeMillis()
 
