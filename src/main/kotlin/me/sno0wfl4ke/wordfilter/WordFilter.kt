@@ -1,7 +1,6 @@
 package me.sno0wfl4ke.wordfilter
 
 import com.opencsv.CSVReader
-import me.sno0wfl4ke.wordfilter.utils.HashFilter
 import java.io.InputStreamReader
 import java.lang.IllegalArgumentException
 
@@ -13,7 +12,13 @@ fun main() {
 class WordFilter {
 
     private var loaded = false
-    private val hashFilter = HashFilter()
+
+    private val hashSet: HashSet<String> = HashSet()
+
+    // Runtime complexity of this operation is O(1)
+    private fun findWord(word: String): Boolean {
+        return hashSet.contains(word)
+    }
 
     private fun loadWords(filePath: String) {
         if (loaded) {
@@ -28,21 +33,21 @@ class WordFilter {
 
         lines.forEach { line ->
             //trie.insertNode(line[0])
-            hashFilter.insertAllWords(listOf(line[0]))
+            hashSet.addAll(listOf(line[0]))
         }
 
         loaded = true
     }
 
-    private fun searchWord(word: String): Boolean {
+    fun searchWord(word: String): Boolean {
         if (!loaded) {
             throw IllegalArgumentException("[wordfilter] No entries loaded!")
         }
 
-        return hashFilter.findWord(word)
+        return findWord(word)
     }
 
-    private fun analyseString(input: String): String {
+    fun analyseString(input: String): String {
         var censoredString = input
         val strArray = input.lowercase().split(" ").toTypedArray()
         var badWordCounter = 0
@@ -71,11 +76,11 @@ class WordFilter {
     private val regexWord = Regex("[a-zA-Z0-9]", RegexOption.IGNORE_CASE)
     private val regexPunctuation = Regex("[=?!.,;:]", RegexOption.IGNORE_CASE)
 
-    private fun censorWord(word: String): String {
+    fun censorWord(word: String): String {
         return word.replace(regexWord, "*")
     }
 
-    private fun removePunctuation(sentence: String): String {
+    fun removePunctuation(sentence: String): String {
         return sentence.replace(regexPunctuation, "")
     }
 
