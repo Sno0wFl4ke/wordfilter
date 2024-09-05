@@ -55,7 +55,7 @@ class WordFilter {
 
         removePunctuation(strArray.toString())
         val runtime: HashMap<String, Long> = HashMap()
-        runtime["analyseStringBoth"] = System.currentTimeMillis()
+        runtime["analyseString"] = System.currentTimeMillis()
 
         var wordFound = false
 
@@ -68,7 +68,7 @@ class WordFilter {
 
             wordCount += 1
         }
-        println("Runtime analysis & censoring: ${System.currentTimeMillis() - runtime["analyseStringBoth"]!!}ms")
+        println("Runtime analysis & censoring: ${System.currentTimeMillis() - runtime["analyseString"]!!}ms")
         println("Harmful words: $badWordCounter/$wordCount")
         return censoredString
     }
