@@ -68,16 +68,16 @@ class WordFilter {
         return censoredString
     }
 
+    private val regexWord = Regex("[a-zA-Z0-9]", RegexOption.IGNORE_CASE)
+    private val regexPunctuation = Regex("[=?!.,;:]", RegexOption.IGNORE_CASE)
+
     private fun censorWord(word: String): String {
-        val regex = Regex("[a-zA-Z0-9]", RegexOption.IGNORE_CASE)
-        return word.replace(regex, "*")
+        return word.replace(regexWord, "*")
     }
 
     private fun removePunctuation(sentence: String): String {
-        val regex = Regex("[=?!.,;:]", RegexOption.IGNORE_CASE)
-        return sentence.replace(regex, "")
+        return sentence.replace(regexPunctuation, "")
     }
-
 
     // Testing
     fun run() {
