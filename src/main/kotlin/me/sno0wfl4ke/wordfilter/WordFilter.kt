@@ -8,9 +8,6 @@ import java.lang.IllegalArgumentException
 fun main() {
     val wordFilter = WordFilter()
     wordFilter.run()
-
-    println()
-    println()
 }
 
 class WordFilter {
@@ -82,12 +79,10 @@ class WordFilter {
     }
 
 
+    // Testing
     fun run() {
-        loadWords("full-word-list.csv")
-        println(analyseString("Man, I was just minding my own damn business when my cat decided to knock over my coffee, spilled all over the keyboard! What a freaking mess, now my day’s all jacked up. Guess it’s just one of those hellish days, huh?"))
-
-
-
+        //loadWords("full-word-list.csv")
+        //println(analyseString("Man, I was just minding my own damn business when my cat decided to knock over my coffee, spilled all over the keyboard! What a freaking mess, now my day’s all jacked up. Guess it’s just one of those hellish days, huh?"))
     }
 
 
