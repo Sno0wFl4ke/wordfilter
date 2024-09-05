@@ -15,8 +15,6 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-core:2.17.1")
     implementation("org.apache.logging.log4j:log4j-api:2.17.1")
     implementation("com.opencsv:opencsv:5.5.2")
-    implementation("org.apache.poi:poi:5.2.3")
-    implementation("org.apache.poi:poi-ooxml:5.2.3")
 }
 
 tasks.test {
